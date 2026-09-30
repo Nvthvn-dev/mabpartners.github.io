@@ -1,0 +1,25 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration {
+    public function up(): void
+    {
+        Schema::create('rendez_vous', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('terrain_id')->constrained('terrains')->cascadeOnDelete();
+            $table->string('nom');
+            $table->string('telephone', 30);
+            $table->string('email')->nullable();
+            $table->date('date_rendez_vous');
+            $table->time('heure_rendez_vous');
+            $table->text('message')->nullable();
+            $table->enum('statut', ['En attente', 'Confirmé', 'Annulé'])->default('En attente');
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void { Schema::dropIfExists('rendez_vous'); }
+};

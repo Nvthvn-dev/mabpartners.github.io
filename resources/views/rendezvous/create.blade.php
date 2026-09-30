@@ -1,0 +1,8 @@
+@extends('layouts.app')
+@section('title', 'Prendre rendez-vous — Mab Partners')
+@section('content')
+<section class="page-hero"><div class="container"><span class="eyebrow">CONTACT</span><h1>Prendre rendez-vous</h1><p>Choisissez le terrain qui vous intéresse et le créneau souhaité.</p></div></section>
+<section class="section"><div class="container form-shell"><form method="POST" action="{{ route('rendezvous.store') }}" class="appointment-form">@csrf
+@if($errors->any())<div class="alert error">Veuillez corriger les champs indiqués.</div>@endif
+<div class="form-grid"><label>Terrain intéressé<select name="terrain_id" required><option value="">Sélectionnez un terrain</option>@foreach($terrains as $item)<option value="{{ $item->id }}" @selected(old('terrain_id', optional($terrain)->id) == $item->id)>{{ $item->reference }} — {{ $item->titre }}</option>@endforeach</select></label><label>Nom complet<input name="nom" value="{{ old('nom') }}" required></label><label>Téléphone<input name="telephone" value="{{ old('telephone') }}" required></label><label>Email <small>(facultatif)</small><input type="email" name="email" value="{{ old('email') }}"></label><label>Date souhaitée<input type="date" name="date_rendez_vous" value="{{ old('date_rendez_vous') }}" min="{{ date('Y-m-d') }}" required></label><label>Heure souhaitée<input type="time" name="heure_rendez_vous" value="{{ old('heure_rendez_vous') }}" required></label></div><label>Message <small>(facultatif)</small><textarea name="message" rows="5" placeholder="Précisez votre demande…">{{ old('message') }}</textarea><button class="btn btn-primary" type="submit">Envoyer ma demande</button></form></div></section>
+@endsection
