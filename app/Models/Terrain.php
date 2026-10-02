@@ -22,4 +22,10 @@ class Terrain extends Model
     {
         return $this->hasMany(RendezVous::class);
     }
+
+    public function images(): HasMany
+{
+    return $this->hasMany(TerrainImage::class)
+        ->orderBy('ordre');
+}
 }

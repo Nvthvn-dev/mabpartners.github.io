@@ -9,13 +9,19 @@ class TerrainController extends Controller
 {
     public function home()
     {
-        $terrains = Terrain::where('statut', 'Disponible')->latest()->take(6)->get();
+        $terrains = Terrain::with('images')
+            ->where('statut', 'Disponible')
+            ->latest()
+            ->take(6)
+            ->get();
+
         return view('terrains.home', compact('terrains'));
     }
 
     public function index(Request $request)
     {
-        $query = Terrain::query()->where('statut', 'Disponible');
+        $query = Terrain::with('images')
+            ->where('statut', 'Disponible');
 
         if ($request->filled('ville')) {
             $query->where('ville', 'like', '%' . $request->ville . '%');
@@ -25,12 +31,18 @@ class TerrainController extends Controller
             $query->where('surface', '>=', (int) $request->min_surface);
         }
 
-        $terrains = $query->latest()->paginate(9)->withQueryString();
+        $terrains = $query
+            ->latest()
+            ->paginate(9)
+            ->withQueryString();
+
         return view('terrains.index', compact('terrains'));
     }
 
     public function show(Terrain $terrain)
     {
+        $terrain->load('images');
+
         return view('terrains.show', compact('terrain'));
     }
 }

@@ -31,6 +31,17 @@
     </div>
     <div class="footer-bottom">© {{ date('Y') }} Mab Partners. Tous droits réservés.</div>
 </footer>
+
+<a
+    href="https://wa.me/2250778613612?text={{ urlencode('Bonjour MAB Partners, je souhaiterais avoir des informations sur vos terrains.') }}"
+    class="whatsapp-floating"
+    target="_blank"
+    rel="noopener"
+    aria-label="Contacter MAB Partners sur WhatsApp"
+>
+    <span>💬</span>
+</a>
+
 <script src="{{ asset('js/site.js') }}"></script>
 </body>
 </html>

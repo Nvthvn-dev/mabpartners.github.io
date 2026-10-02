@@ -7,3 +7,150 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+/* ================================
+   SLIDER DES TERRAINS
+================================ */
+
+.terrain-media {
+    position: relative;
+    width: 100%;
+    height: 260px;
+    overflow: hidden;
+    background: #f1f1f1;
+}
+
+.terrain-slider {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Toutes les images occupent exactement le même emplacement */
+.terrain-slide {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transition: opacity 0.4s ease !important;
+}
+
+/* UNE SEULE image visible */
+.terrain-slide.active {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+    z-index: 2 !important;
+}
+
+
+/* ================================
+   BOUTONS PRECEDENT / SUIVANT
+================================ */
+
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    z-index: 20;
+
+    width: 42px;
+    height: 42px;
+
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(0, 0, 0, 0.60);
+    color: white;
+
+    font-size: 22px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: all 0.2s ease;
+}
+
+.slider-prev {
+    left: 12px;
+}
+
+.slider-next {
+    right: 12px;
+}
+
+.slider-btn:hover {
+    background: rgba(0, 0, 0, 0.85);
+    transform: translateY(-50%) scale(1.08);
+}
+
+
+/* ================================
+   STATUT
+================================ */
+
+.terrain-media .status {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+
+    z-index: 30;
+
+    padding: 7px 12px;
+
+    border-radius: 20px;
+
+    background: white;
+    color: #174a9c;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 768px) {
+
+    .terrain-media {
+        height: 230px;
+    }
+
+    .slider-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 19px;
+    }
+
+    .slider-prev {
+        left: 8px;
+    }
+
+    .slider-next {
+        right: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .terrain-media {
+        height: 210px;
+    }
+}
